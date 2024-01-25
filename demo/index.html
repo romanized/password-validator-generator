@@ -1,0 +1,48 @@
+<!-- WACHTWOORDEN WORDEN NIET OPGESLAGEN EN ZIJN LOCAL. GEEN CONECTIES MET DERDE -->
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wachtwoord Generator Demo</title>
+    <!-- gebruik gemaakt van bootstrap voor styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- formulier & knoppen voor testen van wachtwoorden -->
+<div class="container d-flex align-items-center justify-content-center vh-100">
+    <div class="text-center">
+        <h1>Wachtwoord Generator</h1>
+        <input type="text" id="passwordInput" class="form-control my-3" placeholder="Wachtwoord verschijnt hier...">
+        <button id="generateBtn" class="btn btn-primary mr-2">Genereer Wachtwoord</button>
+        <button id="checkStrengthBtn" class="btn btn-secondary">Controleer Sterkte</button>
+        <div id="message" class="mt-3"></div>
+    </div>
+</div>
+
+<!-- importen van de 2 modules -->
+<script type="module">
+    import { generatePassword } from '../test/passwordGenerator.mjs';
+    import { checkPasswordStrength } from '../test/passwordStrengthChecker.mjs';
+
+    document.getElementById('generateBtn').addEventListener('click', () => {
+        const password = generatePassword(12); // Pas de lengte aan indien nodig (nummer bepaald hoelang het wachtwoord)
+        document.getElementById('passwordInput').value = password;
+    });
+
+    document.getElementById('checkStrengthBtn').addEventListener('click', () => {
+        const password = document.getElementById('passwordInput').value;
+        const { rating, suggestions } = checkPasswordStrength(password);
+        const suggestionsText = suggestions.length > 0 ? 'Suggesties: ' + suggestions.join(', ') : 'Geen suggesties, goed wachtwoord!';
+        const message = `Sterkte: ${rating}. ${suggestionsText}`;
+        document.getElementById('message').textContent = message;
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

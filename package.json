@@ -1,0 +1,12 @@
+{
+  "name": "password-validator-generator",
+  "version": "1.0.0",
+  "description": "Een tool voor het genereren van veilige wachtwoorden en het evalueren van wachtwoordsterkte, perfect voor webapplicaties.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
